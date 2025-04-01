@@ -19,6 +19,11 @@ int main(int argc, char *argv[]) {
         printf("Usage: %s <port>\n", argv[0]);
         exit(1);
     }
+    serv_sock=socket(PF_INET, SOCK_STREAM,0);
+    if(serv_sock==-1){
+        error_handling("socket() error");
+    }
+
     memset(&serv_addr, 0, sizeof(serv_addr));
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);
